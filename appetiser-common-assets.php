@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Appetiser Common Assets
  * Plugin URI:  https://appetiser.com.au
- * Description: Shared resources and functions used by other Appetiser plugins for Dashboard UI.
+ * Description: Shared resources and functions used by other Appetiser plugins for Dashboard UI..
  * Version: 1.0.0
  * Author: Landing page team
  * Author URI: https://appetiser.com.au
@@ -26,3 +26,4 @@
 add_action('admin_menu', function() {
     remove_submenu_page('appetiser-tools', 'appetiser-tools');
 }, 999); // Priority must be after the main menu is added
+
