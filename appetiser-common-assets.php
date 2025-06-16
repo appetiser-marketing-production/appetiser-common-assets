@@ -27,4 +27,3 @@ add_action('admin_menu', function() {
     remove_submenu_page('appetiser-tools', 'appetiser-tools');
 }, 999); // Priority must be after the main menu is added
 
- 
