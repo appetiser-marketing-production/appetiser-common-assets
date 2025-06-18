@@ -27,3 +27,18 @@ add_action('admin_menu', function() {
     remove_submenu_page('appetiser-tools', 'appetiser-tools');
 }, 999); // Priority must be after the main menu is added
 
+
+register_activation_hook(__FILE__, 'appetiser_common_assets_create_settings_folder');
+
+function appetiser_common_assets_create_settings_folder() {
+    $upload_dir = wp_upload_dir();
+    $target_dir = $upload_dir['basedir'] . '/appetiser-settings';
+
+    if (!file_exists($target_dir)) {
+        wp_mkdir_p($target_dir);
+
+        // Create .htaccess to protect JSON files
+        $htaccess_content = "<FilesMatch \"\\.json$\">\nOrder allow,deny\nDeny from all\n</FilesMatch>";
+        file_put_contents($target_dir . '/.htaccess', $htaccess_content);
+    }
+}
