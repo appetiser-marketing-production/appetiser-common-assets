@@ -1,5 +1,7 @@
 <?php
-
+/* GoogleSheetReader wrapper class
+*  source: https://github.com/googleapis/google-api-php-client
+*/
 if ( ! class_exists( 'GoogleSheetReader' ) ) {
 
 	class GoogleSheetReader {
