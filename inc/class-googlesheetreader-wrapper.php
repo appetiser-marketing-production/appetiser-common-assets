@@ -33,7 +33,8 @@ if ( ! class_exists( 'GoogleSheetReader' ) ) {
 		 * @var boolean debug.
 		 */
 		private $debug = false;
-
+		private $logMessages = [];
+		
 		/**
 		 * GoogleSheetReader constructor.
 		 *
@@ -43,6 +44,8 @@ if ( ! class_exists( 'GoogleSheetReader' ) ) {
 		public function __construct( $jsonKeyFilePath, $spreadsheetId, $debug = false ) {
 			$this->debug = $debug;
 
+			add_action( 'admin_notices', [ $this, 'outputLogs' ] );
+			
 			$this->log('🔧 [Init] Starting GoogleSheetReader constructor');
 
 			require_once __DIR__ . '/google-api-php-client/vendor/autoload.php';
@@ -92,7 +95,19 @@ if ( ! class_exists( 'GoogleSheetReader' ) ) {
 		 */
 		private function log( $message ) {
 			if ( $this->debug ) {
-				echo $message . '<br>';
+				$this->logMessages[] = $message;
+			}
+		}
+
+		public function outputLogs() {
+			if ( $this->debug && ! empty( $this->logMessages ) ) {
+				echo '<div class="notice notice-info is-dismissible">
+				<p><strong>Google sheet reader log:</strong></p>
+				<ul style="margin: 0; padding-left: 20px;">';
+				foreach ( $this->logMessages as $msg ) {
+					echo '<li>' . esc_html( $msg ) . '</li>';
+				}
+				echo '</ul></div>';
 			}
 		}
 		
