@@ -25,7 +25,7 @@ class Appetiser_Common_Hubspot_Public {
 
     public function handle_hubspot_shortcode() {
 
-        if (get_option('app_hubspot_override') === '1') {
+        if (get_option('app_hubspot_override') !== '1') {
             return; 
         }
 
