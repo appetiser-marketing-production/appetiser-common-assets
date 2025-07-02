@@ -77,3 +77,13 @@ function appetiser_common_assets_create_settings_folder() {
         file_put_contents($target_dir . '/.htaccess', $htaccess_content);
     }
 }
+
+require_once plugin_dir_path(__FILE__) . 'inc/class-appetiser-common-utils.php';
+require_once plugin_dir_path(__FILE__) . 'admin/app-common-admin.php';
+require_once plugin_dir_path(__FILE__) . 'public/app-common-hubspot.php';
+
+if (is_admin()) {
+    new Appetiser_Common_Admin();
+}
+//new Appetiser_common_public();
+new Appetiser_Common_Hubspot_Public();
