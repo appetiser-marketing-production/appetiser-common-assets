@@ -1,0 +1,26 @@
+.hbspt-form input::placeholder {
+    color: #999 !important; /* Change this to your desired color */
+  }
+
+.hbspt-form input.error {
+    border: 1px solid #ff7376 !important;
+}
+
+.contact-y23 .contact-form .hs_submit input{
+    margin-top:40px;
+}
+
+.form-error-msg {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.phone-error-msg{
+    color: red;
+    font-size: 0.9em;
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+

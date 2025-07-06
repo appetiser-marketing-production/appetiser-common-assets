@@ -15,9 +15,9 @@ class Appetiser_Common_Admin {
             return;
         }
         
-       wp_enqueue_style('dashicons');
-       wp_enqueue_style( 'appetiser-dashboard-style', plugin_dir_url( __FILE__ ) . 'css/appetiser-dashboard.css', array(), '1.0.0', 'all' );
-       wp_enqueue_style( 'appetiser-general-settings', plugin_dir_url( __FILE__ ) . 'css/appetiser-general-settings.css', array(), '1.0.0', 'all' );
+        wp_enqueue_style('dashicons');
+        wp_enqueue_style( 'appetiser-dashboard-style', plugin_dir_url( __FILE__ ) . 'css/appetiser-dashboard.css', array(), '1.0.0', 'all' );
+        wp_enqueue_style( 'appetiser-general-settings', plugin_dir_url( __FILE__ ) . 'css/appetiser-general-settings.css', array(), '1.0.0', 'all' );
     }
 
     public function enqueue_scripts( $hook ) {
@@ -50,7 +50,7 @@ class Appetiser_Common_Admin {
         register_setting('app_settings_group', 'app_hubspot_live');
         register_setting('app_settings_group', 'app_hubspot_devsite');
         register_setting('app_settings_group', 'app_hubspot_override');
-        
+        register_setting('app_settings_group', 'app_hubspot_forms');
     }
 
     public function render_admin_page(){
@@ -105,8 +105,28 @@ class Appetiser_Common_Admin {
                                 ?>
                             </td>
                         </tr>
+                        <tr valign="top">
+                            <Td colspan=2>
+                                <h2>Active Hubspot Forms</h2>
+                                <div id="hubspot-form-groups">
+                                    <!-- JS will populate form groups here -->
+                                </div>
+                                <p>
+                                    <button type="button" id="add-hubspot-form-group" class="button" title="Add Form Group">
+                                        <span class="dashicons dashicons-plus-alt2"></span> Add New Form
+                                    </button>
+                                </p>
+                            </td>
+                        </tr>
+                        <script>
+                            const savedHubspotForms = <?php echo json_encode(get_option('app_hubspot_forms', [])); ?>;
+                        </script>
+                        <tr valign="top">
+                            <Td colspan=2>
+                                <?php submit_button('Save Settings'); ?>
+                            </td>
+                        </tr>
                     </table>
-                    <?php submit_button('Save Settings'); ?>
                 </form>
             </div>
         </div>

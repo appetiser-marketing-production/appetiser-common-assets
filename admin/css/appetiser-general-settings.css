@@ -43,3 +43,48 @@
 .toggle-switch input:checked + .slider:before {
     transform: translateX(20px);
 }
+
+#hubspot-form-groups {
+    overflow-x: auto;
+}
+
+.hubspot-form-group{
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+.hubspot-form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* optional spacing between fields */
+    flex-wrap: nowrap;
+}
+
+.hubspot-form-group input[type="text"] {
+    min-width: 150px;
+}
+
+.hubspot-form-group .field-enable-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.hubspot-form-group .remove-hubspot-form-group {
+    margin-left: auto; /* push button to the end */
+}
+
+.hubspot-toggle-button-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-button{
+    padding-top:5px !important;
+    color: #d63638 !important;
+    border-color: #d63638 !important;
+    background: #f6f7f7 !important;
+}
