@@ -64,3 +64,58 @@ document.addEventListener("DOMContentLoaded", function () {
         createFormGroup("", "", "", true, false);
     }
 });
+
+jQuery(document).ready(function ($) {
+    function updateProgress(percent, message) {
+        $('#app-comments-progress').show();
+        $('#app-progress-bar').css('width', percent + '%').text(percent + '%');
+        $('#app-progress-status').text(message);
+    }
+
+    $('#app-backup-comments').on('click', function (e) {
+        e.preventDefault(); // prevent form from submitting
+        alert('backup started');
+        updateProgress(0, 'Starting backup...');
+        $.post(ajaxurl, { action: 'app_backup_comments_ajax' }, function (res) {
+            if (res.success) {
+                updateProgress(100, 'Backup complete: ' + res.data.filename);
+            } else {
+                updateProgress(0, 'Backup failed: ' + res.data);
+            }
+        });
+    });
+
+    $('#app-restore-comments').on('click', function (e) {
+        e.preventDefault(); 
+        updateProgress(0, 'Restoring comments...');
+
+        $.post(ajaxurl, { action: 'app_restore_comments_ajax' }, function (res) {
+            if (res.success) {
+                updateProgress(100, 'Restore complete from: ' + res.data.filename);
+
+                // Show admin notice message
+                const notice = $('<div class="notice notice-success is-dismissible"><p>Comment restore complete.</p></div>');
+                $('.wrap h1').after(notice);
+            } else {
+                updateProgress(0, 'Restore failed: ' + res.data);
+
+                const notice = $('<div class="notice notice-error is-dismissible"><p>' + res.data + '</p></div>');
+                $('.wrap h1').after(notice);
+            }
+        });
+    });
+
+    $('#app-delete-comments').on('click', function (e) {
+        e.preventDefault();
+        if (!confirm('Are you sure you want to delete ALL comments? This cannot be undone.')) return;
+
+        $.post(ajaxurl, { action: 'app_delete_all_comments_ajax' }, function (res) {
+            if (res.success) {
+                alert('All comments have been deleted.');
+            } else {
+                alert('Failed to delete comments: ' + res.data);
+            }
+        });
+    });
+
+});
