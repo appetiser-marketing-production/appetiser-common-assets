@@ -28,9 +28,6 @@ class Appetiser_Common_Admin {
     }
 
     public function add_plugin_menu() {
-        $current_user = wp_get_current_user();
-        if ($current_user->ID !== 74) return;
-
         add_submenu_page(
             'appetiser-tools',
             'General Settings',

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set path to WordPress root (edit this if needed)
-WP_PATH="/var/www/work/appetiser/local/html"
+WP_PATH="/var/www/html"
 
 # Move to WP root directory
 cd "$WP_PATH" || { echo "❌ Failed to change directory to $WP_PATH"; exit 1; }
