@@ -45,7 +45,7 @@ class Appetiser_Common_Admin {
         register_setting('app_settings_group', 'app_hubspot_forms');
         register_setting('app_settings_group', 'app_comments_enable');
     }
-
+    
     public function render_admin_page(){
         $current_user = wp_get_current_user();
         ?>
@@ -136,7 +136,7 @@ class Appetiser_Common_Admin {
                                     <input type="checkbox" name="app_comments_enable" value="1" <?php checked(get_option('app_comments_enable'), '1'); ?> />
                                     <span class="slider"></span>
                                 </label>
-                                <span class="toggle-label">"Enable Comment Lockdown</span>
+                                <span class="toggle-label">Enable Comment Lockdown</span>
                             </div>
                         </td>
                     </tr>
